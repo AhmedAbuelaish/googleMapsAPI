@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 33.588, lng: -86.602}
+        });
+
+        // Create an array of alphabetical characters used to label the markers.
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+
+        var markers = capitalsSEUS.map(function(location) {
+          return new google.maps.Marker({
+            position: {lat: location.lat, lng: location.lon}
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+      }
+
+      var capitalsSEUS = [
+          {"lat":32.361538, "lon":-86.279118, "state":"Alabama", "city":"Montgomery"},
+          {"lat":34.736009, "lon":-92.331122, "state":"Arkansas", "city":"Little Rock"},
+          {"lat":30.4518, "lon":-84.27277, "state":"Florida", "city":"Tallahassee"},
+          {"lat":33.76, "lon":-84.39, "state":"Georgia", "city":"Atlanta"},
+          {"lat":38.197274,"lon":-84.86311, "state":"Kentucky", "city":"Frankfort"},
+          {"lat":30.45809,"lon":-91.140229, "state":"Louisiana", "city":"Baton Rouge"},
+          {"lat":32.32, "lon":-90.207, "state":"Mississippi", "city":"Jackson"},
+          {"lat":35.771, "lon":-78.638, "state":"North Carolina", "city":"Raleigh"},
+          {"lat":34, "lon":-81.035, "state":"South Carolina", "city":"Columbia"},
+          {"lat":36.165, "lon":-86.784, "state":"Tennessee", "city":"Nashville"},
+          {"lat":37.54, "lon":-77.46, "state":"Virginia", "city":"Richmond"},
+          {"lat":38.349497, "lon":-81.633294, "state":"West Virginia", "city":"Charleston"},
+          ]
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbC0vVrzVum6DP1nvJMqYWsZ9VvttQjX4&callback=initMap">
+    </script>
+  </body>
+</html>
