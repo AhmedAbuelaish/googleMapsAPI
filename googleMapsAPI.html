@@ -3,12 +3,15 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Marker Clustering</title>
+    <title>State Capitals in SE USA</title>
+    //Adding Bootstrap Toggle
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 90%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -20,9 +23,24 @@
   </head>
   <body>
     <div id="map"></div>
+    <div >View State Capitals in SE America</div>
+    <input id="toggle-event" type="checkbox" data-toggle="toggle">
+    <div id="console-event"></div>
+    
     <script>
+       $(function() {
+          $('#toggle-event').change(function() {
+            $('#console-event').html('Toggle: ' + $(this).prop('checked'))
+          })
+        })
 
-      function initMap() {
+      function initMap () {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 33.588, lng: -86.602}
+        });
+      }
+      function initMapWithMarkers() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 6,
@@ -63,11 +81,13 @@
           {"lat":37.54, "lon":-77.46, "state":"Virginia", "city":"Richmond"},
           {"lat":38.349497, "lon":-81.633294, "state":"West Virginia", "city":"Charleston"},
           ]
+
+    }
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbC0vVrzVum6DP1nvJMqYWsZ9VvttQjX4&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbC0vVrzVum6DP1nvJMqYWsZ9VvttQjX4&callback=initMapWithMarkers">
     </script>
   </body>
 </html>
